@@ -131,12 +131,12 @@ $data = mysqli_query($conn, $select_query);
 				<li class="control" data-filter=".JAVA">JAVA</li>
 				<li class="control" data-filter=".PHP">PHP</li>
 				<li class="control" data-filter=".HTML">HTML</li>
-				<li class="control" data-filter=".photo">Photography</li>		
+				<li class="control" data-filter=".photo">MYSQL</li>		
 			</ul>
 			<div class="row course-items-area">
 				<!-- course -->
 				<?php while ($row = mysqli_fetch_array($data)) { ?>
-					<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursetype'] ?>"><a href="single-course.php?singlecourse=<?= $row['coursename'] ?>">
+					<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursetype'] ?>"><a href="singlecourse.php?singlecoursedata=<?= $row['coursename'] ?>">
 						<div class="course-item">
 							<div><img src="<?php echo './img/courses/' . $row['image']; ?>" alt="image" class="ci-thumb set-bg" width="100%">
 							</div>
@@ -197,6 +197,8 @@ $data = mysqli_query($conn, $select_query);
         </div>
     </div>
 </footer>
+
+
 	<!-- footer section end -->
 
 

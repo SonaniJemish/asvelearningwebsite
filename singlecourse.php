@@ -1,7 +1,7 @@
 <?php
 include "./phpscript/config.php";
 
-$cname = $_GET['singlecourse'];
+$cname = $_GET['singlecoursedata'];
 
 $select_query = "SELECT * FROM courses WHERE coursename='$cname'";
 $data = mysqli_query($conn, $select_query);
