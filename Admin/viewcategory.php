@@ -50,10 +50,16 @@ $data = mysqli_query($conn, $select_query);
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="category.php">Category</a>
+          <a class="nav-link" href="viewcategory.php">Category</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="../phpscript/addcategory.php">Add Categories <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="viewcoursetype.php">View Course Type</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../phpscript/addcoursetype.php">Add Course Type</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../phpscript/addcategory.php">Add Course Category</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="discription.php">Add Description</a>

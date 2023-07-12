@@ -2,22 +2,24 @@
 include '../phpscript/config.php';
 error_reporting(0);
 
-$ncoursename = $_POST['ncoursename'];
+$ncoursetype = $_POST['ncoursetype'];
+$ncourseimage = $_POST['ncourseimage'];
 
-if (isset($_POST['addcategory'])) {
-    $qr1 = "INSERT INTO `courses`(`coursename`,) VALUES ('$ncoursename')";
-    $res1 = mysqli_query($conn, $qr1);
-    if ($res1) {
-        header('location:../admin/viewcategory.php');
+
+if (isset($_POST['addtype'])) {
+    $qr = "INSERT INTO `coursetype`(`coursetype`,`image`) VALUES ('$ncoursetype','$ncourseimage')";
+    $res = mysqli_query($conn, $qr);
+    if ($res) {
+        move_uploaded_file($_FILES['ncourseimage']['tmp_name'], "../img/courses/" . $_FILES['ncourseimage']['name']);
+        header('location: ../Admin/viewcoursetype.php');
         exit;
     } else {
         $error_message = "Error updating category: " . mysqli_error($conn);
         echo $error_message; // Print the error message for debugging purposes
     }
 }
-
 if (isset($_POST['backtopage'])) {
-    header('location:../admin/viewcoursetype.php');
+    header('location:../admin/category.php');
 }
 
 ?>
@@ -61,16 +63,22 @@ if (isset($_POST['backtopage'])) {
     </div>
 
     <section class="mt-5 pt-5 ml-5 pl-5">
-        <form action="addcategory.php" method="post" class="mt-5 pt-5">
+        <form action="addcoursetype.php" method="post">
             <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">New Course Name :</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">New Course Type :</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="colFormLabel" name="ncoursename">
+                    <input type="text" class="form-control" id="colFormLabel" name="ncoursetype">
                 </div>
             </div>
-            <div class="form-group row mt-5 pt-5">
+            <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">New Course Image :</label>
+                <div class="col-sm-4">
+                    <input type="file" class="form-control" id="colFormLabel" name="ncourseimage">
+                </div>
+            </div>
+            <div class="form-group row mt-5 pt-5 ">
                 <button type="submit" name="backtopage" class="btn btn-lg mr-4">Previous Page</button>
-                <button type="submit" name="addcategory" class="btn btn-lg">Add Course Category</button>
+                <button type="submit" name="addtype" class="btn btn-l">Add Course Type</button>
             </div>
         </form>
     </section>
