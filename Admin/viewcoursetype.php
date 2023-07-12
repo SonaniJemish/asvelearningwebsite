@@ -67,22 +67,16 @@ if (isset($_GET['delid'])) {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="viewcategory.php">Category</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="viewcoursetype.php">View Course Type</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../phpscript/addcoursetype.php">Add Course Type</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../phpscript/addcategory.php">Add Course Category</a>
+          <a class="nav-link" href="discription.php">Description</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="discription.php">Add Description</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="videolink.php">Add Video Links</a>
+          <a class="nav-link" href="videolink.php">Video Links</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -99,7 +93,8 @@ if (isset($_GET['delid'])) {
           <th>ID</th>
           <th>Course Photo</th>
           <th>Course Type</th>
-          <th>Course Name</th>
+          <th>Add Course Category</th>
+          <th>View Course Category</th>
           <th>Edit</th>
           <th>Delete</th>
         </tr>
@@ -112,8 +107,8 @@ if (isset($_GET['delid'])) {
             <td><?php echo $row['id']; ?></td>
             <td><img src="<?php echo '../img/courses/' . $row['image']; ?>" alt="image" width="100" height="50"></td>
             <td><?php echo $row['coursetype']; ?></td>
-            <td><a href="../phpscript/addcategory.php?addcategory=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">Add Courses</a></td>
-            <td><a href="../phpscript/addcategory.php?addcategory=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">Add Courses</a></td>
+            <td><a href="../phpscript/addcategory.php?addcat=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">Add Courses</a></td>
+            <td><a href=" viewcategory.php?viewcategory=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">View Courses</a></td>
             <td><a href="../phpscript/updatecategory.php?updatetype=<?= $row['id']; ?>" type="button" class="btn btn-lg btn-block">Edit</a></td>
             <td><a href="viewcoursetype.php?delid=<?= $row['id']; ?>" type="button" id="delbutton" class="btn btn-lg btn-block" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a></td>
           </tr>

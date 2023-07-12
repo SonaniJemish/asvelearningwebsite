@@ -52,16 +52,16 @@ if (!$data) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="viewcategory.php">Category</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="../phpscript/addcategory.php">Add Categories <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="viewcoursetype.php">View Course Type</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="discription.php">Add Description</a>
+                    <a class="nav-link" href="../phpscript/addcoursetype.php">Add Course Type</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="videolink.php">Add Video Links</a>
+                    <a class="nav-link" href="discription.php">Description</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="videolink.php">Video Links</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -88,7 +88,7 @@ if (!$data) {
                     echo '<tr><td colspan="5">' . $error . '</td></tr>';
                 } else {
                     while ($row = mysqli_fetch_array($data)) {
-                        ?>
+                ?>
                         <tr>
                             <td><?php echo $row['id'] ?></td>
                             <td><?php echo $row['coursetype'] ?></td>

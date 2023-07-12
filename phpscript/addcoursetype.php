@@ -19,7 +19,7 @@ if (isset($_POST['addtype'])) {
     }
 }
 if (isset($_POST['backtopage'])) {
-    header('location:../admin/category.php');
+    header('location:../admin/addcoursetype.php');
 }
 
 ?>

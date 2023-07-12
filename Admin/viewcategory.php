@@ -1,10 +1,24 @@
 <?php
 include_once "../phpscript/config.php";
-include_once "../phpscript/deletecategory.php";
 
-$select_query = "SELECT * FROM courses";
-$data = mysqli_query($conn, $select_query);
+if (isset($_GET['viewcategory'])) {
+  $cname = $_GET['viewcategory'];
 
+  if (isset($_POST['delid'])) {
+    $linkId = $_POST['link_id'];
+    $delete_query = "DELETE FROM courses WHERE id='$linkId'";
+    mysqli_query($conn, $delete_query);
+    header("Location: viewcategory.php?viewcategory=$cname");
+    exit();
+  }
+
+  $select_query = "SELECT * FROM courses WHERE coursetype='$cname'";
+  $data = mysqli_query($conn, $select_query);
+
+  if (!$data) {
+    $error = "Error: " . mysqli_error($conn);
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,22 +64,16 @@ $data = mysqli_query($conn, $select_query);
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="viewcategory.php">Category</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="viewcoursetype.php">View Course Type</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../phpscript/addcoursetype.php">Add Course Type</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../phpscript/addcategory.php">Add Course Category</a>
+          <a class="nav-link" href="discription.php">Description</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="discription.php">Add Description</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="videolink.php">Add Video Links</a>
+          <a class="nav-link" href="videolink.php">Video Links</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -80,7 +88,6 @@ $data = mysqli_query($conn, $select_query);
       <thead>
         <tr>
           <th>ID</th>
-          <th>Course Photo</th>
           <th>Course Type</th>
           <th>Course Name</th>
           <th>Edit</th>
@@ -90,14 +97,18 @@ $data = mysqli_query($conn, $select_query);
       <tbody>
         <?php
         while ($row = mysqli_fetch_array($data)) {
-          ?>
+        ?>
           <tr>
             <td><?php echo $row['id']; ?></td>
-            <td><img src="<?php echo '../img/courses/' . $row['image']; ?>" alt="image" width="100" height="50"></td>
             <td><?php echo $row['coursetype']; ?></td>
             <td><?php echo $row['coursename']; ?></td>
             <td><a href="../phpscript/updatecategory.php?updatecat=<?= $row['id']; ?>" type="button" class="btn btn-lg btn-block">Edit</a></td>
-            <td><a href="category.php?delid=<?= $row['id']; ?>" type="button" id="delbutton" class="btn btn-lg btn-block" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a></td>
+            <td>
+              <form method="POST">
+                <input type="hidden" name="link_id" value="<?php echo $row['id'] ?>">
+                <button type="submit" name="delid" class="btn btn-lg btn-block" onclick="return confirm('Are you sure you want to delete this link?')">Delete</button>
+              </form>
+            </td>
           </tr>
         <?php
         }

@@ -82,7 +82,7 @@
                             <a href="signup.php">Sign up</a> | <a href="forgot-password.php">Forgot password</a>
                         </div>
                         <!-- <button type="submit" class="btn btn-primary">Login</button> -->
-                        <a href="viewcategory.php" class="btn btn-primary btn-block">Submit</a>
+                        <a href="viewcoursetype.php" class="btn btn-primary btn-block">Submit</a>
                     </form>
                 </div>
             </div>
