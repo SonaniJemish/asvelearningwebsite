@@ -2,20 +2,22 @@
 include '../phpscript/config.php';
 error_reporting(0);
 
-$uid = $_GET['updatecat'];
-$select_query = "SELECT * FROM courses WHERE id='$uid'";
+$uid = $_GET['updatetype'];
+$select_query = "SELECT * FROM coursetype WHERE id='$uid'";
 $data = mysqli_query($conn, $select_query);
 $row = mysqli_fetch_array($data);
+$ocourseimage = $row['image'];
 $ocoursetype = $row['coursetype'];
-$ocoursename = $row['coursename'];
 
-if (isset($_POST['updatecategory'])) {
-    $ncoursename = $_POST['ncoursename'];
+if (isset($_POST['updatecoursetype'])) {
+    $ncourseimage = $_FILES['ncourseimage']['name'];
+    $ncoursetype = $_POST['ncoursetype'];
 
-    $qr = "UPDATE `courses` SET `coursename`='$ncoursename' WHERE `id`='$uid'";
+    $qr = "UPDATE `coursetype` SET `image`='$ncourseimage',`coursetype`='$ncoursetype' WHERE `id`='$uid'";
     $res = mysqli_query($conn, $qr);
     if ($res) {
-        header("location:../admin/viewcategory.php?viewcategory=$ocoursetype");
+        move_uploaded_file($_FILES['ncourseimage']['tmp_name'], "../img/courses/".$ncourseimage);
+        header('location:../admin/viewcoursetype.php');
         exit;
     } else {
         $error_message = "Error updating category: " . mysqli_error($conn);
@@ -24,7 +26,7 @@ if (isset($_POST['updatecategory'])) {
 }
 
 if (isset($_POST['backtopage'])) {
-    header("location:../admin/viewcategory.php?viewcategory=$ocoursetype");
+    header('location:../admin/updatecoursetype.php');
     exit;
 }
 
@@ -66,30 +68,36 @@ if (isset($_POST['backtopage'])) {
 
     <section class="m-5 p-5">
         <div class="form-group row">
-            <label for="colFormLabel" class="col-sm-2 col-form-label">Course Type :</label>
+            <label for="colFormLabel" class="col-sm-2 col-form-label">Old Course Image :</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="colFormLabel" value="<?php echo $ocoursetype; ?>" disabled>
+                <img src="../img/courses/<?php echo $ocourseimage; ?>" alt="image" width="100" height="50">
             </div>
         </div>
         <div class="form-group row">
-            <label for="colFormLabel" class="col-sm-2 col-form-label">Old Course Name :</label>
+            <label for="colFormLabel" class="col-sm-2 col-form-label">Old Course Type :</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="colFormLabel" value="<?php echo $ocoursename; ?>" disabled>
+                <input type="text" class="form-control" id="colFormLabel" value="<?php echo $ocoursetype; ?>" disabled>
             </div>
         </div>
     </section>
 
     <section class="m-5 p-5">
-        <form action="updatecategory.php?updatecat=<?php echo $uid; ?>" method="post" enctype="multipart/form-data">
+        <form action="updatecoursetype.php?updatetype=<?php echo $uid; ?>" method="post" enctype="multipart/form-data">
             <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">New Course Name :</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">New Course Image :</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="colFormLabel" name="ncoursename">
+                    <input type="file" class="form-control" id="colFormLabel" name="ncourseimage">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">New Course Type :</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="colFormLabel" name="ncoursetype">
                 </div>
             </div>
             <div class="form-group row m-5 p-5">
                 <button type="submit" name="backtopage" class="btn btn-lg mr-3">Previous Page</button>
-                <button type="submit" name="updatecategory" class="btn btn-lg">Update</button>
+                <button type="submit" name="updatecoursetype" class="btn btn-lg">Update</button>
             </div>
         </form>
     </section>

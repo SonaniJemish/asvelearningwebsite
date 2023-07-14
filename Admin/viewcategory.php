@@ -67,7 +67,7 @@ if (isset($_GET['viewcategory'])) {
           <a class="nav-link" href="viewcoursetype.php">View Course Type</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../phpscript/addcoursetype.php">Add Course Type</a>
+          <a class="nav-link" href="../phpscript/addcategory.php?addcat=<?php echo $cname ?>">Add Course Category</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="discription.php">Description</a>
