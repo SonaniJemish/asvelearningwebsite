@@ -1,11 +1,11 @@
 <?php
 include 'config.php';
 
-$uid = $_GET['fullsummary'] ?? '';
+$cname = $_GET['fullsummary'] ?? '';
 
 if (isset($_POST['addlongsummary'])) {
     $longsummary = $_POST['longeditor'];
-    $qr = "UPDATE `courses` SET `longsummary`='$longsummary' WHERE id='$uid'";
+    $qr = "UPDATE `summary` SET `discription`='$longsummary' WHERE coursename='$cname'";
     $res = mysqli_query($conn, $qr);
     if ($res) {
         header('Location: ../admin/discription.php');
@@ -16,7 +16,7 @@ if (isset($_POST['addlongsummary'])) {
     }
 }
 
-$select_query = "SELECT * FROM courses WHERE id='$uid'";
+$select_query = "SELECT * FROM courses WHERE coursename='$cname'";
 $data = mysqli_query($conn, $select_query);
 $row = mysqli_fetch_array($data);
 ?>
@@ -73,8 +73,8 @@ $row = mysqli_fetch_array($data);
     </nav>
     <section class="summary">
         <script src="../Admin/ckeditor/ckeditor.js"></script>
-        <form action="fullsummary.php?fullsummary=<?= $uid ?>" method="post" class="m-5">
-            <textarea name="longeditor" id="longeditor" cols="30" rows="20"><?= $row['longsummary'] ?? '' ?></textarea>
+        <form action="fullsummary.php?fullsummary=<?= $cname ?>" method="post" class="m-5">
+            <textarea name="longeditor" id="longeditor" cols="30" rows="20"><?= $row['discription'] ?? '' ?></textarea>
             <input type="submit" name="addlongsummary" class="form-control mt-3 btn-success" value="Save">
         </form>
         <script>

@@ -15,9 +15,11 @@ if (isset($_POST['addcategory'])) {
         $error_message = "Please fill in all the fields.";
     } else {
         $qr = "INSERT INTO `courses`(`coursetype`, `coursename`) VALUES ('$ncoursetype','$ncoursename')";
+        $qr1 = "INSERT INTO `summary`(`coursetype`, `coursename`) VALUES ('$ncoursetype','$ncoursename')";
         $res = mysqli_query($conn, $qr);
+        mysqli_query($conn, $qr1);
 
-        if ($res) {
+        if ($res||$res1) {
             header("Location: ../admin/viewcategory.php?viewcategory=$ncoursetype");
             exit;
         } else {

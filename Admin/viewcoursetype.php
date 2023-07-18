@@ -109,7 +109,7 @@ if (isset($_GET['delid'])) {
             <td><?php echo $row['coursetype']; ?></td>
             <td><a href="../phpscript/addcategory.php?addcat=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">Add Courses</a></td>
             <td><a href=" viewcategory.php?viewcategory=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">View Courses</a></td>
-            <td><a href="../phpscript/updatecoursetype.php?updatetype=<?= $row['id']; ?>" type="button" class="btn btn-lg btn-block">Edit</a></td>
+            <td><a href="../phpscript/updatecoursetype.php?updatetype=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">Edit</a></td>
             <td><a href="viewcoursetype.php?delid=<?= $row['id']; ?>" type="button" id="delbutton" class="btn btn-lg btn-block" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a></td>
           </tr>
         <?php

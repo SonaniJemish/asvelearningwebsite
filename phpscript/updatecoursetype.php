@@ -13,7 +13,7 @@ if (isset($_POST['updatecoursetype'])) {
     $ncourseimage = $_FILES['ncourseimage']['name'];
     $ncoursetype = $_POST['ncoursetype'];
 
-    $qr = "UPDATE `coursetype` SET `image`='$ncourseimage',`coursetype`='$ncoursetype' WHERE `id`='$uid'";
+    $qr = "UPDATE `coursetype` SET `coursetype`='$ncoursetype' WHERE `coursetype`='$uid'";
     $res = mysqli_query($conn, $qr);
     if ($res) {
         move_uploaded_file($_FILES['ncourseimage']['tmp_name'], "../img/courses/".$ncourseimage);

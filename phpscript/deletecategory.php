@@ -5,7 +5,7 @@ include 'config.php';
 if (isset($_GET['delid'])) {
   $id = $_GET['delid'];
 
-  $query = "DELETE FROM `courses` WHERE id = ?";
+  $query = "DELETE FROM `courses` WHERE coursename = ?";
   $stmt = mysqli_prepare($conn, $query);
   mysqli_stmt_bind_param($stmt, "i", $id);
   mysqli_stmt_execute($stmt);

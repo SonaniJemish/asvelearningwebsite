@@ -6,8 +6,10 @@ if (isset($_GET['viewcategory'])) {
 
   if (isset($_POST['delid'])) {
     $linkId = $_POST['link_id'];
-    $delete_query = "DELETE FROM courses WHERE id='$linkId'";
+    $delete_query = "DELETE FROM courses WHERE coursename='$linkId'";
+    $delete_query1 = "DELETE FROM summary WHERE coursename='$linkId'";
     mysqli_query($conn, $delete_query);
+    mysqli_query($conn, $delete_query1);
     header("Location: viewcategory.php?viewcategory=$cname");
     exit();
   }
@@ -105,7 +107,7 @@ if (isset($_GET['viewcategory'])) {
             <td><a href="../phpscript/updatecategory.php?updatecat=<?= $row['id']; ?>" type="button" class="btn btn-lg btn-block">Edit</a></td>
             <td>
               <form method="POST">
-                <input type="hidden" name="link_id" value="<?php echo $row['id'] ?>">
+                <input type="hidden" name="link_id" value="<?php echo $row['coursename'] ?>">
                 <button type="submit" name="delid" class="btn btn-lg btn-block" onclick="return confirm('Are you sure you want to delete this link?')">Delete</button>
               </form>
             </td>

@@ -6,7 +6,7 @@ if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
 
     // Prepare and execute the delete query with prepared statements
-    $delete_query = "UPDATE `courses` SET `longsummary`=''  WHERE id = ?";
+    $delete_query = "UPDATE `summary` SET `discription`=''  WHERE id = ?";
     $stmt = mysqli_prepare($conn, $delete_query);
     mysqli_stmt_bind_param($stmt, "i", $delete_id);
     mysqli_stmt_execute($stmt);
@@ -109,7 +109,7 @@ if (!$data) {
                         <td><?php echo $row['id'] ?></td>
                         <td><?php echo $row['coursetype'] ?></td>
                         <td><?php echo $row['coursename'] ?></td>
-                        <td><a href="../phpscript/fullsummary.php?fullsummary=<?= $row['id'] ?>" type="button" class="btn btn-lg btn-block">Description</a></td>
+                        <td><a href="../phpscript/fullsummary.php?fullsummary=<?= $row['coursename'] ?>" type="button" class="btn btn-lg btn-block">Description</a></td>
                         <td><a href="discription.php?delete=<?= $row['id'] ?>" type="button" class="btn btn-lg btn-block" onclick="return confirm('Are you sure you want to delete the Short Description or Full Description?')">Delete</a></td>
                     </tr>
                 <?php } ?>
