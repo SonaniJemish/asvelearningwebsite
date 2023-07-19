@@ -3,10 +3,10 @@ include "./phpscript/config.php";
 
 $cname = $_GET['singlecoursedata'];
 
-$select_query = "SELECT * FROM courses WHERE coursename='$cname'";
+$select_query = "SELECT * FROM summary WHERE coursename='$cname'";
 $data = mysqli_query($conn, $select_query);
 while ($row = mysqli_fetch_array($data)) {
-    $longsummary = $row['longsummary'];
+    $longsummary = $row['discription'];
     $coursename = $row['coursename'];
     $coursetype = $row['coursetype'];
 }

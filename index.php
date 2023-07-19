@@ -107,18 +107,17 @@ $data1 = mysqli_query($conn, $fortype);
 					if ($count < 4) {
 						$imagePath = './img/courses/' . $row1['image'];
 				?>
-						<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row1['coursetype'] ?>">
-								<div class="course-item">
-									<div>
-										<img src="<?php echo $imagePath; ?>" alt="image" class="ci-thumb set-bg" width="100%">
-									</div>
-									<div class="course-info">
-										<div class="course-text">
-											<h5><?php echo $row1['coursetype'] ?></h5>
-
-										</div>
+						<div class="mix col-lg-3 col-md-4 col-sm-6">
+							<div class="course-item">
+								<div>
+									<img src="<?php echo $imagePath; ?>" alt="image" class="ci-thumb set-bg" width="100%">
+								</div>
+								<div class="course-info">
+									<div class="course-text">
+										<h5><?php echo $row1['coursetype'] ?></h5>
 									</div>
 								</div>
+							</div>
 							</a>
 						</div>
 				<?php
@@ -136,7 +135,7 @@ $data1 = mysqli_query($conn, $fortype);
 
 	<!-- search section -->
 
-	
+
 	<section class="search-section mt-5">
 		<div class="container">
 			<div class="search-warp">
@@ -169,34 +168,25 @@ $data1 = mysqli_query($conn, $fortype);
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
 			</div>
 		</div>
-		<div class="course-warp">
-			<!-- <ul class="course-filter controls">
-				<li class="control active" data-filter="all">All</li>
-				<li class="control" data-filter=".JAVA">JAVA</li>
-				<li class="control" data-filter=".PHP">PHP</li>
-				<li class="control" data-filter=".C">C</li>
-				<li class="control" data-filter=".MYSQL">MYSQL</li>
-			</ul> -->
+		<div class="course-warp mt-5">
 			<div class="row course-items-area">
-			<?php
-				$count = 0; // Counter variable
+				<?php
 				while ($row = mysqli_fetch_array($data)) {
-					if ($count < 12) {
 				?>
-						<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursetype'] ?>">
-								<div class="course-item">
-									<div class="course-info">
-										<div class="course-text">
-											<h5><?php echo $row['coursetype'] ?></h5>
-
-										</div>
+					<div class="mix col-lg-3 col-md-4 col-sm-6">
+						<a href="singlecourse.php?singlecoursedata=<?= $row['coursename'] ?>">
+							<div class="course-item">
+								<div class="course-info">
+									<div class="course-text">
+										<h5><?= $row['coursetype'] ?></h5>
+										<div class="students"><?= $row['coursename'] ?></div>
 									</div>
 								</div>
-							</a>
-						</div>
+							</div>
+						</a>
+					</div>
 				<?php
-						$count++;
-					}
+
 				}
 
 				?>
