@@ -1,25 +1,38 @@
 <?php
 include_once "../phpscript/config.php";
 
+
 $select_query = "SELECT * FROM coursetype";
 $data = mysqli_query($conn, $select_query);
 
-if (isset($_GET['delid'])) {
-  $id = $_GET['delid'];
+if (isset($_GET['delcourse'])) {
+  $ctype = $_GET['delcourse'];
 
-  $query = "DELETE FROM `coursetype` WHERE id = ?";
-  $stmt = mysqli_prepare($conn, $query);
-  mysqli_stmt_bind_param($stmt, "i", $id);
-  mysqli_stmt_execute($stmt);
+  if (!empty($ctype)) {
+    $deleteCoursesQuery = "DELETE FROM `courses` WHERE coursetype = ?";
+    $deleteCoursetypeQuery = "DELETE FROM `coursetype` WHERE coursetype = ?";
 
-  if (mysqli_stmt_affected_rows($stmt) > 0) {
-    header("Location: ../Admin/viewcoursetype.php?success");
-    exit();
-  } else {
-    $error = "Failed to delete category: " . mysqli_error($conn);
+    $stmtCourses = mysqli_prepare($conn, $deleteCoursesQuery);
+    mysqli_stmt_bind_param($stmtCourses, "s", $ctype);
+
+    $stmtCoursetype = mysqli_prepare($conn, $deleteCoursetypeQuery);
+    mysqli_stmt_bind_param($stmtCoursetype, "s", $ctype);
+
+    $resultCourses = mysqli_stmt_execute($stmtCourses);
+    $resultCoursetype = mysqli_stmt_execute($stmtCoursetype);
+
+    if ($resultCourses && $resultCoursetype) {
+      header("Location: ../Admin/viewcoursetype.php?success");
+      exit();
+    } else {
+      error_log("Error executing delete queries: " . mysqli_error($conn));
+      header("Location: ../Admin/viewcoursetype.php?error");
+      exit();
+    }
+
+    mysqli_stmt_close($stmtCourses);
+    mysqli_stmt_close($stmtCoursetype);
   }
-
-  mysqli_stmt_close($stmt);
 }
 
 ?>
@@ -102,7 +115,7 @@ if (isset($_GET['delid'])) {
       <tbody>
         <?php
         while ($row = mysqli_fetch_array($data)) {
-          ?>
+        ?>
           <tr>
             <td><?php echo $row['id']; ?></td>
             <td><img src="<?php echo '../img/courses/' . $row['image']; ?>" alt="image" width="100" height="50"></td>
@@ -110,7 +123,7 @@ if (isset($_GET['delid'])) {
             <td><a href="../phpscript/addcategory.php?addcat=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">Add Courses</a></td>
             <td><a href=" viewcategory.php?viewcategory=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">View Courses</a></td>
             <td><a href="../phpscript/updatecoursetype.php?updatetype=<?= $row['coursetype']; ?>" type="button" class="btn btn-lg btn-block">Edit</a></td>
-            <td><a href="viewcoursetype.php?delid=<?= $row['id']; ?>" type="button" id="delbutton" class="btn btn-lg btn-block" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a></td>
+            <td><a href="viewcoursetype.php?delcourse=<?= $row['coursetype']; ?>" type="button" id="delbutton" class="btn btn-lg btn-block" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a></td>
           </tr>
         <?php
         }
