@@ -3,12 +3,12 @@ include "./phpscript/config.php";
 
 if (isset($_POST['search'])) {
 	$searchQuery = $_POST['searchQuery'];
-	$select_query = "SELECT * FROM courses WHERE coursetype LIKE '%$searchQuery%' OR coursename LIKE '%$searchQuery%'";
+	$select_query1 = "SELECT * FROM coursetype WHERE coursetype LIKE '%$searchQuery%'";
 } else {
-	$select_query = "SELECT * FROM courses";
+	$select_query1 = "SELECT * FROM coursetype";
 }
 
-$data = mysqli_query($conn, $select_query);
+$data1 = mysqli_query($conn, $select_query1);
 ?>
 
 
@@ -135,15 +135,14 @@ $data = mysqli_query($conn, $select_query);
 			</ul>
 			<div class="row course-items-area">
 				<!-- course -->
-				<?php while ($row = mysqli_fetch_array($data)) { ?>
-					<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursetype'] ?>"><a href="singlecourse.php?singlecoursedata=<?= $row['coursename'] ?>">
+				<?php while ($row = mysqli_fetch_array($data1)) { ?>
+					<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursetype'] ?>"><a href="coursemap.php?coursedata=<?= $row['coursetype'] ?>">
 						<div class="course-item">
 							<div><img src="<?php echo './img/courses/' . $row['image']; ?>" alt="image" class="ci-thumb set-bg" width="100%">
 							</div>
 							<div class="course-info">
 								<div class="course-text">
-									<h5><?php echo $row['coursetype'] ?></h5>
-									<div class="students"><?php echo $row['coursename'] ?></div>	
+									<h5><?php echo $row['coursetype'] ?></h5>	
 								</div>
 							</div>
 						</div>

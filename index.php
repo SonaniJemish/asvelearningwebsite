@@ -126,7 +126,12 @@ $data1 = mysqli_query($conn, $fortype);
 				}
 
 				?>
+
+
 			</div>
+		</div>
+		<div class="text-center mt-5">
+			<a href="coursemap.php" class="btn btn-lg bg-light rounded-pill">Show More</a>
 		</div>
 	</section>
 
