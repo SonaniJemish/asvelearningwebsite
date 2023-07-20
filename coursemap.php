@@ -1,20 +1,30 @@
 <?php
 include "./phpscript/config.php";
 
-$cname = $_GET['coursedata'];
 
-
-if (isset($_POST['search'])) {
-	$searchQuery = $_POST['searchQuery'];
-	$select_query = "SELECT * FROM courses WHERE coursename LIKE '%$searchQuery%' OR coursetype='$cname'";
+if (isset($_GET['coursedata'])) {
+	$cname = $_GET['coursedata'];
+	if (isset($_POST['search'])) {
+		$searchQuery = $_POST['searchQuery'];
+		$select_query = "SELECT * FROM courses WHERE coursename LIKE '%$searchQuery%' OR coursetype='$cname'";
+	} else {
+		$select_query = "SELECT * FROM courses WHERE coursetype='$cname'";
+	}
 } else {
-	$select_query = "SELECT * FROM courses where coursetype='$cname'";
+	if (isset($_POST['search'])) {
+		$searchQuery = $_POST['searchQuery'];
+		$select_query = "SELECT * FROM courses WHERE coursename LIKE '%$searchQuery%'";
+	} else {
+		$select_query = "SELECT * FROM courses";
+	}
 }
 
+
+
+$data1 = mysqli_query($conn, $select_query);
 $data = mysqli_query($conn, $select_query);
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -122,53 +132,34 @@ $data = mysqli_query($conn, $select_query);
 			</div>
 		</div>
 	</section>
-
-
 	<!-- search section end -->
 
-
 	<!-- course section -->
-	<section class="course-section mb-5">
-    <div class="course-warp">
-        <ul class="course-filter controls">
-            <li class="control active" data-filter="all">All</li>
-            <?php
-            $count = 0;
-            while ($row = mysqli_fetch_assoc($data)) {
-                if ($count < 4) {
-            ?>
-                    <li class="control" data-filter=".<?php echo $row['coursename']; ?>"><?php echo $row['coursename']; ?></li>
-            <?php
-                    $count++;
-                }
-            }
-            ?>
-        </ul>
-        <div class="row course-items-area">
-            <!-- course -->
-            <?php
-            mysqli_data_seek($data, 0);
-            while ($row = mysqli_fetch_assoc($data)) {
-            ?>
-                <div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursename']; ?>">
-                    <a href="singlecourse.php?singlecoursedata=<?php echo $row['coursename']; ?>">
-                        <div class="course-item">
-                            <div class="course-info">
-                                <div class="course-text">
-                                    <h5><?php echo $row['coursetype']; ?></h5>
-                                    <div class="students"><?php echo $row['coursename']; ?></div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            <?php
-            }
-            ?>
-        </div>
-    </div>
-</section>
+	
+	<section class="course-section mb-5 mt-5">
+		<div class="course-warp">
+			<div class="row course-items-area">
+				<!-- course -->
+				<?php while ($row = mysqli_fetch_assoc($data1)) {?>
+					<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursename'] ?>">
+						<a href="singlecourse.php?singlecoursedata=<?= $row['coursename'] ?>">
+							<div class="course-item">
+								<div class="course-info">
+									<div class="course-text">
+										<h5><?php echo $row['coursetype'] ?></h5>
+										<div class="students"><?php echo $row['coursename']; ?></div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
+	</section>
+
 	<!-- course section end -->
+
 
 	<!-- footer section -->
 	<footer class="footer-section">
@@ -213,8 +204,6 @@ $data = mysqli_query($conn, $select_query);
 			</div>
 		</div>
 	</footer>
-
-
 	<!-- footer section end -->
 
 

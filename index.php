@@ -99,18 +99,17 @@ $data1 = mysqli_query($conn, $fortype);
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
 			</div>
 		</div>
-		<div class="course-warp">
+		<div class="course-warp mt-5">
 			<div class="row course-items-area">
 				<?php
-				$count = 0; // Counter variable
+				$count = 0; 
 				while ($row1 = mysqli_fetch_array($data1)) {
-					if ($count < 4) {
+					if ($count < 8) {
 						$imagePath = './img/courses/' . $row1['image'];
 				?>
-						<div class="mix col-lg-3 col-md-4 col-sm-6">
+						<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row1['coursetype'] ?>"><a href="coursemap.php?coursedata=<?= $row1['coursetype'] ?>">
 							<div class="course-item">
-								<div>
-									<img src="<?php echo $imagePath; ?>" alt="image" class="ci-thumb set-bg" width="100%">
+								<div><img src="<?php echo './img/courses/' . $row1['image']; ?>" alt="image" class="ci-thumb set-bg" width="100%">
 								</div>
 								<div class="course-info">
 									<div class="course-text">
@@ -118,8 +117,7 @@ $data1 = mysqli_query($conn, $fortype);
 									</div>
 								</div>
 							</div>
-							</a>
-						</div>
+						</a></div>
 				<?php
 						$count++;
 					}
@@ -176,7 +174,10 @@ $data1 = mysqli_query($conn, $fortype);
 		<div class="course-warp mt-5">
 			<div class="row course-items-area">
 				<?php
+				$count = 0; 
 				while ($row = mysqli_fetch_array($data)) {
+					if ($count < 8) {
+
 				?>
 					<div class="mix col-lg-3 col-md-4 col-sm-6">
 						<a href="singlecourse.php?singlecoursedata=<?= $row['coursename'] ?>">
@@ -191,7 +192,8 @@ $data1 = mysqli_query($conn, $fortype);
 						</a>
 					</div>
 				<?php
-
+					$count++;
+				}
 				}
 
 				?>
