@@ -6,7 +6,7 @@ if (isset($_GET['coursedata'])) {
 	$cname = $_GET['coursedata'];
 	if (isset($_POST['search'])) {
 		$searchQuery = $_POST['searchQuery'];
-		$select_query = "SELECT * FROM courses WHERE coursename LIKE '%$searchQuery%' OR coursetype='$cname'";
+		$select_query = "SELECT * FROM courses WHERE coursename LIKE '%$searchQuery%' AND coursetype='$cname'";
 	} else {
 		$select_query = "SELECT * FROM courses WHERE coursetype='$cname'";
 	}
