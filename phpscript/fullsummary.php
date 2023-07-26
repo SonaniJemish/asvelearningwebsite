@@ -3,24 +3,47 @@ include 'config.php';
 
 $cname = $_GET['fullsummary'] ?? '';
 
-if (isset($_POST['addlongsummary'])) {
-    $longsummary = $_POST['longeditor'];
-    $qr = "UPDATE `summary` SET `discription`='$longsummary' WHERE coursename='$cname'";
-    $res = mysqli_query($conn, $qr);
-    if ($res) {
-        header('Location: ../admin/discription.php');
-        exit;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addlongsummary'])) {
+    $longsummary = $_POST['ckeditor'];
+
+    // Use prepared statements to prevent SQL injection
+    $query = "UPDATE `summary` SET `discription`=? WHERE coursename=?";
+    $stmt = mysqli_prepare($conn, $query);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "ss", $longsummary, $cname);
+        $res = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+
+        if ($res) {
+            header('Location: ../admin/discription.php');
+            exit;
+        } else {
+            $error_message = "Error updating category: " . mysqli_error($conn);
+            // You might want to handle the error in a better way, e.g., log the error.
+            echo $error_message; // Print the error message for debugging purposes
+        }
     } else {
-        $error_message = "Error updating category: " . mysqli_error($conn);
-        echo $error_message; // Print the error message for debugging purposes
+        // Handle the error when preparing the statement.
+        die("Database error. Please try again later.");
     }
 }
 
-$select_query = "SELECT * FROM courses WHERE coursename='$cname'";
-$data = mysqli_query($conn, $select_query);
-$row = mysqli_fetch_array($data);
-?>
+// Use prepared statements to prevent SQL injection
+$select_query = "SELECT * FROM summary WHERE coursename=?";
+$stmt = mysqli_prepare($conn, $select_query);
 
+if ($stmt) {
+    mysqli_stmt_bind_param($stmt, "s", $cname);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_array($result);
+    mysqli_stmt_close($stmt);
+} else {
+    // Handle the error when preparing the statement.
+    die("Database error. Please try again later.");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,25 +89,29 @@ $row = mysqli_fetch_array($data);
                     <a class="nav-link" href="fullsummary.php">Full Description</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../Admin/discription.php">Discription</a>
+                    <a class="nav-link" href="../Admin/description.php">Description</a>
                 </li>
             </ul>
         </div>
     </nav>
     <section class="summary">
-        <script src="../Admin/ckeditor/ckeditor.js"></script>
+    <script src="../Admin/ckeditor4/ckeditor/ckeditor.js"></script>
+
         <form action="fullsummary.php?fullsummary=<?= $cname ?>" method="post" class="m-5">
-            <textarea name="longeditor" id="longeditor" cols="30" rows="20"><?= $row['discription'] ?? '' ?></textarea>
+            <textarea name="ckeditor" id="ckeditor" cols="30" rows="20"><?= $row['discription'] ?? '' ?></textarea>
             <input type="submit" name="addlongsummary" class="form-control mt-3 btn-success" value="Save">
         </form>
         <script>
-            CKEDITOR.replace('longeditor', {
+            CKEDITOR.replace('ckeditor', {
                 height: 400
             });
         </script>
     </section>
 
     <!--====== Javascripts & Jquery ======-->
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script> -->
+    <!-- <script src="../Admin/ckeditor4/ckeditor.js"></script> -->
+
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/mixitup.min.js"></script>
