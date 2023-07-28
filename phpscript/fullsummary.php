@@ -67,6 +67,7 @@ if ($stmt) {
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="css/style.css" />
 
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -95,7 +96,7 @@ if ($stmt) {
         </div>
     </nav>
     <section class="summary">
-    <script src="../Admin/ckeditor4/ckeditor/ckeditor.js"></script>
+        <script src="../Admin/ckeditor4/ckeditor/ckeditor.js"></script>
 
         <form action="fullsummary.php?fullsummary=<?= $cname ?>" method="post" class="m-5">
             <textarea name="ckeditor" id="ckeditor" cols="30" rows="20"><?= $row['discription'] ?? '' ?></textarea>
@@ -109,9 +110,7 @@ if ($stmt) {
     </section>
 
     <!--====== Javascripts & Jquery ======-->
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script> -->
-    <!-- <script src="../Admin/ckeditor4/ckeditor.js"></script> -->
-
+    
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/mixitup.min.js"></script>

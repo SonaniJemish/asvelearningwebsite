@@ -13,10 +13,10 @@
  * (1) https://ckeditor.com/cke4/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) https://ckeditor.com/cke4/builder/4b6de538c8b7a709a7fcc6e920d4ea57
+ * (2) https://ckeditor.com/cke4/builder/88a138f37e5ad005ac17a361c24d79f1
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) https://ckeditor.com/cke4/builder/download/4b6de538c8b7a709a7fcc6e920d4ea57
+ * (3) https://ckeditor.com/cke4/builder/download/88a138f37e5ad005ac17a361c24d79f1
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -72,10 +72,12 @@ var CKBUILDER_CONFIG = {
 		'enterkey' : 1,
 		'entities' : 1,
 		'exportpdf' : 1,
+		'fa42' : 1,
 		'filebrowser' : 1,
 		'find' : 1,
 		'floatingspace' : 1,
 		'font' : 1,
+		'fontawesome5' : 1,
 		'format' : 1,
 		'forms' : 1,
 		'horizontalrule' : 1,
@@ -86,6 +88,7 @@ var CKBUILDER_CONFIG = {
 		'indentlist' : 1,
 		'justify' : 1,
 		'language' : 1,
+		'lineheight' : 1,
 		'link' : 1,
 		'list' : 1,
 		'liststyle' : 1,
@@ -108,12 +111,16 @@ var CKBUILDER_CONFIG = {
 		'showborders' : 1,
 		'smiley' : 1,
 		'sourcearea' : 1,
+		'spacingsliders' : 1,
 		'specialchar' : 1,
 		'stylescombo' : 1,
 		'tab' : 1,
 		'table' : 1,
+		'tableresize' : 1,
+		'tableresizerowandcolumn' : 1,
 		'tableselection' : 1,
 		'tabletools' : 1,
+		'tabletoolstoolbar' : 1,
 		'templates' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
