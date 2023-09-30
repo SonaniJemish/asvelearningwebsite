@@ -19,7 +19,7 @@ $data1 = mysqli_query($conn, $fortype);
 <html lang="en">
 
 <head>
-	<title>WebUni - Education Template</title>
+	<title>ASV Elearning</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="WebUni Education Template">
 	<meta name="keywords" content="webuni, education, creative, html">
@@ -129,7 +129,7 @@ $data1 = mysqli_query($conn, $fortype);
 			</div>
 		</div>
 		<div class="text-center mt-5">
-			<a href="coursemap.php" class="btn btn-lg bg-light rounded-pill">Show More</a>
+			<a href="courses.php" class="btn btn-lg bg-light rounded-pill">Show More</a>
 		</div>
 	</section>
 

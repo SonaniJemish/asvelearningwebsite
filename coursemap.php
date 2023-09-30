@@ -30,7 +30,7 @@ $data = mysqli_query($conn, $select_query);
 <html lang="en">
 
 <head>
-	<title>WebUni - Education Template</title>
+	<title>ASV Elearning</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="WebUni Education Template">
 	<meta name="keywords" content="webuni, education, creative, html">
