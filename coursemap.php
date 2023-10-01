@@ -76,7 +76,7 @@ $data = mysqli_query($conn, $select_query);
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="site-logo">
-						<img src="img/logo.png" alt="">
+						<img src="img/logo.png" alt="" height="100" width="100">
 					</div>
 					<div class="nav-switch">
 						<i class="fa fa-bars"></i>
