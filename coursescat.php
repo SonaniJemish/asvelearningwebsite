@@ -1,7 +1,6 @@
 <?php
 include "./phpscript/config.php";
 
-
 if (isset($_GET['coursedata'])) {
 	$cname = $_GET['coursedata'];
 	if (isset($_POST['search'])) {
@@ -18,13 +17,14 @@ if (isset($_GET['coursedata'])) {
 		$select_query = "SELECT * FROM courses";
 	}
 }
-
-
+$filterquery = "SELECT * FROM coursetype";
 
 $data1 = mysqli_query($conn, $select_query);
 $data = mysqli_query($conn, $select_query);
-
+$filter = mysqli_query($conn, $filterquery);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -132,22 +132,51 @@ $data = mysqli_query($conn, $select_query);
 			</div>
 		</div>
 	</section>
+
+
 	<!-- search section end -->
 
+	<!-- Filter Section Start -->
+
+	<section class="course-section mb-5">
+		<div class="course-warp">
+			<ul class="course-filter controls">
+				<li class="control active" data-filter="all">All</li>
+				<?php
+				$count = 0;
+				while ($row1 = mysqli_fetch_array($filter)) {	
+					if ($count < 8) {
+				?>
+
+						<li class="control" data-filter=".<?php echo $row1['coursetype'] ?>"><?php echo $row1['coursetype'] ?></li>
+				<?php
+						$count++;
+					}
+				} ?>
+
+			</ul>
+		</div>
+	</section>
+
+	<!-- Filter Section End -->
+
+
+		
+
+
 	<!-- course section -->
-	
 	<section class="course-section mb-5 mt-5">
 		<div class="course-warp">
 			<div class="row course-items-area">
 				<!-- course -->
-				<?php while ($row = mysqli_fetch_assoc($data1)) {?>
-					<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursename'] ?>">
+				<?php while ($row = mysqli_fetch_array($data1)) { ?>
+					<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursetype'] ?>">
 						<a href="singlecourse.php?singlecoursedata=<?= $row['coursename'] ?>">
 							<div class="course-item">
 								<div class="course-info">
 									<div class="course-text">
-										<h5><?php echo $row['coursetype'] ?></h5>
-										<div class="students"><?php echo $row['coursename']; ?></div>
+										<h5><?= $row['coursetype'] ?></h5>
+										<div class="students"><?= $row['coursename'] ?></div>
 									</div>
 								</div>
 							</div>
@@ -157,9 +186,7 @@ $data = mysqli_query($conn, $select_query);
 			</div>
 		</div>
 	</section>
-
 	<!-- course section end -->
-
 
 	<!-- footer section -->
 	<footer class="footer-section">
@@ -204,6 +231,8 @@ $data = mysqli_query($conn, $select_query);
 			</div>
 		</div>
 	</footer>
+
+
 	<!-- footer section end -->
 
 

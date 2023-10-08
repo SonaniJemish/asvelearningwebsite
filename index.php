@@ -108,7 +108,7 @@ $data1 = mysqli_query($conn, $fortype);
 					if ($count < 8) {
 						$imagePath = './img/courses/' . $row1['image'];
 				?>
-						<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row1['coursetype'] ?>"><a href="coursemap.php?coursedata=<?= $row1['coursetype'] ?>">
+						<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row1['coursetype'] ?>"><a href="coursescat.php?coursedata=<?= $row1['coursetype'] ?>">
 							<div class="course-item">
 								<div><img src="<?php echo './img/courses/' . $row1['image']; ?>" alt="image" class="ci-thumb set-bg" width="100%">
 								</div>
@@ -130,7 +130,7 @@ $data1 = mysqli_query($conn, $fortype);
 			</div>
 		</div>
 		<div class="text-center mt-5">
-			<a href="courses.php" class="btn btn-lg bg-light rounded-pill">Show More</a>
+			<a href="coursestype.php" class="btn btn-lg bg-light rounded-pill">Show More</a>
 		</div>
 	</section>
 
@@ -199,6 +199,9 @@ $data1 = mysqli_query($conn, $fortype);
 
 				?>
 			</div>
+		</div>
+		<div class="text-center mt-5">
+			<a href="coursescat.php" class="btn btn-lg bg-light rounded-pill">Show More</a>
 		</div>
 	</section>
 	<!-- course section end -->

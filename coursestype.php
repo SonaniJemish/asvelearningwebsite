@@ -125,39 +125,17 @@ $data = mysqli_query($conn, $select_query1);
 	<!-- search section end -->
 
 
-	<!-- Filter Section Start -->
-
-	<section class="course-section mb-5">
-		<div class="course-warp">
-			<ul class="course-filter controls">
-				<li class="control active" data-filter="all">All</li>
-				<?php
-				$count = 0;
-				while ($row1 = mysqli_fetch_array($data)) {	
-					if ($count < 8) {
-				?>
-
-						<li class="control" data-filter=".<?php echo $row1['coursetype'] ?>"><?php echo $row1['coursetype'] ?></li>
-				<?php
-						$count++;
-					}
-				} ?>
-
-			</ul>
-		</div>
-	</section>
-
-	<!-- Filter Section End -->
+	
 
 
 
 	<!-- course section -->
-	<section class="course-section mb-5">
+	<section class="course-section mb-5 mt-5">
 		<div class="course-warp">
 			<div class="row course-items-area">
 				<!-- course -->
 				<?php while ($row = mysqli_fetch_array($data1)) { ?>
-					<div class="mix col-lg-3 col-md-4 col-sm-6 <?php echo $row['coursetype'] ?>"><a href="coursemap.php?coursedata=<?= $row['coursetype'] ?>">
+					<div class="mix col-lg-3 col-md-4 col-sm-6 "><a href="coursescat.php?coursedata=<?= $row['coursetype'] ?>">
 							<div class="course-item">
 								<div><img src="<?php echo './img/courses/' . $row['image']; ?>" alt="image" class="ci-thumb set-bg" width="100%">
 								</div>
