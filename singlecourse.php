@@ -212,7 +212,7 @@ $data1 = mysqli_query($conn, $selectvideo);
                             <p class="mb-0">
                                 &copy; <script>
                                     document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-light">Colorlib</a>
+                                </script> ASVlearning.com All rights reserved.
                             </p>
                         </div>
                     </div>

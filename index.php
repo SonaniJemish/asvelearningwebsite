@@ -70,6 +70,7 @@ $data1 = mysqli_query($conn, $fortype);
 							<li><a href="courses.php">Courses</a></li>
 							<li><a href="contact.php">Contact</a></li>
 							<li><a href="aboutus.php">About us</a></li>
+							<li><a href="aboutus.php">About us</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -260,9 +261,9 @@ $data1 = mysqli_query($conn, $fortype);
 					<div class="col-lg-12">
 						<div class="text-center text-light">
 							<p class="mb-0">
-								&copy; <script>
+								&copy; <scrip>
 									document.write(new Date().getFullYear());
-								</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-light">Colorlib</a>
+								</script> ASVlearning.com All rights reserved.
 							</p>
 						</div>
 					</div>
@@ -270,6 +271,7 @@ $data1 = mysqli_query($conn, $fortype);
 			</div>
 		</div>
 	</footer>
+
 
 
 
