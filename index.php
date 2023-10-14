@@ -67,10 +67,10 @@ $data1 = mysqli_query($conn, $fortype);
 					<nav class="main-menu text-right">
 						<ul>
 							<li><a href="index.php">Home</a></li>
-							<li><a href="courses.php">Courses</a></li>
+							<li><a href="coursestype.php">Courses</a></li>
 							<li><a href="contact.php">Contact</a></li>
 							<li><a href="aboutus.php">About us</a></li>
-							<li><a href="aboutus.php">About us</a></li>
+							<li><a href="subscriber.php">Subscribe</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -250,7 +250,7 @@ $data1 = mysqli_query($conn, $fortype);
 						<h4>Quick Links</h4>
 						<ul class="list-unstyled footer-links">
 							<li><a href="index.php">Home</a></li>
-							<li><a href="courses.php">Courses</a></li>
+							<li><a href="coursestype.php">Courses</a></li>
 							<li><a href="aboutus.php">About</a></li>
 							<li><a href="contact.php">Contact</a></li>
 						</ul>

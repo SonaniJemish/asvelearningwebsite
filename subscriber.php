@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +34,7 @@
 	</div>
 
 	<!-- Header section -->
-	<header class="header-section pt-4">
+	<!-- <header class="header-section pt-4">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
@@ -55,7 +57,7 @@
 				</div>
 			</div>
 		</div>
-	</header>
+	</header> -->
 	<!-- Header section end -->
 
 
@@ -72,21 +74,19 @@
 
 	<!-- Page -->
 	<section class="signup-section my-5">
-    <div class="signup-bg set-bg" data-setbg="img/signup-bg.jpg"></div>
+    <!-- <div class="signup-bg set-bg" data-setbg="img/signup-bg.jpg"></div> -->
     <div class="container-fluid">
-        <div class="row">
+        <div class="row">	
             <div class="col-lg-6">
                 <div class="signup-warp">
-                    <div class="section-title text-white text-left">
+                    <!-- <div class="section-title text-white text-left"> 
                         <h2>Contact Us</h2>
-                    </div>
+                    </div> -->
                     <!-- signup form -->
-                    <form class="signup-form" method="post" action="./phpscript/feedback.php">
-                        <input name="fname" type="text" placeholder="Your Name">
-                        <input name="femail" type="text" placeholder="Your E-mail">
-                        <input name="fphone" type="text" placeholder="Your Phone">
-                        <textarea name="ftextarea" placeholder="Enter your feedback"></textarea>
-                        <button name="submitfeedback" class="site-btn">Submit Feedback</button>
+                    <form class="signup-form" method="post" action="./phpscript/subscribe.php">
+                        <input name="sname" type="text" placeholder="Your Name">
+                        <input name="semail" type="text" placeholder="Your E-mail">
+                        <button name="sendmail" class="site-btn">Subscribe</button>
                     </form>
                 </div>
             </div>
